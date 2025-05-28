@@ -1,13 +1,13 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-import os
 
 from . import database
 from .routes import router
 
-# Ensure database tables are created
+
 def create_db_and_tables():
     database.Base.metadata.create_all(bind=database.engine)
+
 
 app = FastAPI(
     title="EasyEventRegister Backend",
@@ -22,12 +22,13 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Main API router for event and registration endpoints
 app.include_router(router)
+
 
 @app.on_event("startup")
 def on_startup():
     create_db_and_tables()
+
 
 # PUBLIC_INTERFACE
 @app.get("/")
