@@ -11,6 +11,8 @@ def get_event(db: Session, event_id: int):
     return db.query(database.Event).filter(database.Event.id == event_id).first()
 
 # PUBLIC_INTERFACE
+
+
 def get_events(db: Session, skip: int = 0, limit: int = 100):
     """Get a list of events."""
     return (
