@@ -10,6 +10,7 @@ engine = create_engine(
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
 
+
 # ORM Models
 class Event(Base):
     __tablename__ = "events"
@@ -19,6 +20,7 @@ class Event(Base):
     location = Column(String, nullable=True)
     date = Column(DateTime, nullable=False)
     registrations = relationship("Registration", back_populates="event")
+
 
 class Registration(Base):
     __tablename__ = "registrations"
